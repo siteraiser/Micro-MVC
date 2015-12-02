@@ -1,0 +1,18 @@
+Options +FollowSymlinks
+RewriteEngine On
+#disallow directory access
+Options All -Indexes
+
+#prevent folder listing
+IndexIgnore *
+
+
+RewriteBase /
+RewriteCond %{HTTP_HOST} ^website.com
+RewriteRule (.*) http://www.website.com/$1 [R=301,L]
+
+
+RewriteCond $1 !^(index\.php|robots\.txt|sitemap\.xml|assets|fonts|images)
+RewriteRule ^(.*)$ /index.php/$1 [L]
+
+
