@@ -43,7 +43,6 @@ abstract class helpers{
 		}
 
 		if($results !==true && !empty($results)){
-			$k=1;
 			foreach($results as $value){
 				$trans[]=$value;
 			}
@@ -60,6 +59,7 @@ abstract class helpers{
 		}
 		return $controller_method;
 	}
+	
 	public function get_include_contents($filename,$data) {
 		foreach($data as $key => $value){
 			$$key = $value;
@@ -118,7 +118,7 @@ abstract class helpers{
 
 	
 	/*****extras ***********/
-	public function slugify ($string) {
+	public function urlSlug ($string) {
 		$string = utf8_encode($string);
 		$string = iconv('UTF-8', 'ASCII//TRANSLIT', $string);   
 		$string = preg_replace('/^a-z0-9\-\_]/i', '', $string);
