@@ -9,7 +9,7 @@ abstract class helpers{
 		unset($value);
 
 		function match($pattern,$urlSegs){
-			$i = 0;$match = false; $pattcount=count($pattern);$urlcount=count($urlSegs);
+			$i = 0;$match = false;$urlcount=count($urlSegs);
 			foreach($pattern as $value){				
 				if($value != '(:any)'){
 					if($urlSegs[$i] == $value){
