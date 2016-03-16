@@ -47,15 +47,24 @@ abstract class helpers{
 				$trans[]=$value;
 			}
 		}
-		$controller_method=[];
-		if(isset($routes[$i]['controller'])){
-			$split = explode('$1', $routes[$i]['controller']);
-			$controller_method = $split[0];
+	$controller_method=[];
+		if(isset($routes[$i]['controller'])){			
+			$first = strpos($routes[$i]['controller'], '$');
+			if($first==0){
+			$first = strlen($routes[$i]['controller']);
+			}
+			$controller_method = substr($routes[$i]['controller'], 0, $first); 
 			$controller_method = explode('/',$controller_method);
 		}
-
 		if(isset($trans)){
-			$controller_method[2]=$trans;
+			
+			$args = substr($routes[$i]['controller'],  $first, strlen($routes[$i]['controller']));
+				$argsOrder = explode('/',$args);
+				$i=0;
+				foreach($argsOrder as $value){
+					$combined[] = @$trans[substr($value,1) - 1]; 
+				}
+			$controller_method[2]=$combined;
 		}
 		return $controller_method;
 	}
