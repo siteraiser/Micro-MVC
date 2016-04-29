@@ -90,7 +90,8 @@ abstract class helpers{
 	}	
 	
 	public function loadModel($path) {
-		$name =	end(explode('/',$path));
+		$var=explode('/',$path);
+		$name =	end($var);
 		$loadname = 'models/'.$path.'.php';
 		if(file_exists($loadname) AND !isset($this->$name)){
 			include_once($loadname);
